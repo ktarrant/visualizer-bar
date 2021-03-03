@@ -1,0 +1,28 @@
+#:kivy 1.0.9
+#:import utils kivy.utils
+
+<GridElement>:
+    size: 50, 50
+    canvas:
+        Color:
+            rgb: 0, 0, 0
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+<GridArray>:
+    canvas.before:
+        Color:
+            rgb: utils.get_color_from_hex('#282828')
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    canvas:
+        Color:
+            rgb: utils.get_color_from_hex('#404040')
+        Rectangle:
+            pos: 0, 0
+            size: self.width, self.height / 4
+
+    GridElement:
+        center: self.parent.center
