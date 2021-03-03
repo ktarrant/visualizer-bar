@@ -2,7 +2,8 @@
 #:import utils kivy.utils
 
 <GridElement>:
-    size: 50, 50
+    size: 32, 32
+    size_hint: None, None
     canvas:
         Color:
             rgb: 0, 0, 0
@@ -17,12 +18,33 @@
         Rectangle:
             pos: self.pos
             size: self.size
-    canvas:
-        Color:
-            rgb: utils.get_color_from_hex('#404040')
-        Rectangle:
-            pos: 0, 0
-            size: self.width, self.height / 4
 
-    GridElement:
-        center: self.parent.center
+    padding: 32
+    spacing: 8
+    rows: 4
+
+<GridController>:
+    canvas.before:
+        Color:
+            rgb: 0, 0, 0
+
+    BoxLayout:
+        id: controller_box
+        orientation: 'vertical'
+        size: self.parent.size
+
+        GridArray:
+            size_hint: 1, 0.75
+            pos_hint: {'center': 1}
+
+        BoxLayout:
+            id: panel_box
+            orientation: 'horizontal'
+            size_hint: 1, 0.25
+
+            canvas.before:
+                Color:
+                    rgb: utils.get_color_from_hex('#404040')
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
