@@ -11,22 +11,23 @@ import numpy as np
 Config.set('graphics', 'width', '850')
 
 
-color_map = np.zeros(shape=(4, 40, 3), dtype=float)
+color_map = np.zeros(shape=(4, 40, 3), dtype=int)
 
 
 class GridElement(Widget):
     row = NumericProperty(0)
     col = NumericProperty(0)
-    color = ColorProperty('#000000')
+    color = ColorProperty('#505000')
 
     def update_color(self):
-        self.color = tuple(color_map[self.row, self.col])
+        self.color = tuple(color_map[self.row, self.col] / 255.0)
 
 
 class GridArray(GridLayout):
     def __init__(self, **kwargs):
         super(GridArray, self).__init__(**kwargs)
         self.elements = self.add_elements()
+        self.update_elements()
 
     def add_elements(self) -> List[GridElement]:
         rv = []
